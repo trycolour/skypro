@@ -1,6 +1,13 @@
 package ru.hogwarts.school.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "FACULTIES")
+
 public class Faculcy {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
     private String color;
@@ -10,6 +17,7 @@ public class Faculcy {
         this.name = name;
         this.color = color;
     }
+    public Faculcy(){}
 
     public long getId() {
         return id;

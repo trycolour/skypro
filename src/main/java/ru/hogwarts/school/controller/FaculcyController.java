@@ -3,7 +3,6 @@ package ru.hogwarts.school.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.hogwarts.school.model.Faculcy;
-import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.service.FaculcyService;
 
 import java.util.Collection;
@@ -14,10 +13,6 @@ import java.util.Collection;
 
 public class FaculcyController {
 private final FaculcyService faculcyService;
-    @GetMapping
-    public String getApi() {
-        return "Приложение работает";
-    }
 
     public FaculcyController(FaculcyService faculcyService) {
         this.faculcyService = faculcyService;
@@ -57,8 +52,8 @@ private final FaculcyService faculcyService;
 
 
     @DeleteMapping("{id}")
-    public Faculcy deleteFaculcy(@PathVariable Long id) {
-        return faculcyService.deleteFaculcy(id);
+    public void deleteFaculcy(@PathVariable Long id) {
+        faculcyService.deleteFaculcy(id);
     }
 
 }

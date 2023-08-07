@@ -1,15 +1,18 @@
 package ru.hogwarts.school.service;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.hogwarts.school.model.Student;
 
 import ru.hogwarts.school.reposy.StudentRepository;
 
+import java.util.Collection;
+
 @Service
 
 public class StudentService {
     private final StudentRepository studentRepository;
-    private long idCount;
+
 
     public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
@@ -36,18 +39,15 @@ return studentRepository.save(student);
 
     }
     //фильтрация по возрасту
-   /* public Collection<Student> sortingStudent(Long age) {
-        Collection<Student> sortedStudents = new ArrayList<>();
-        for (Student student : students.values()) {
-            if (student.getAge() == age) {
-                sortedStudents.add(student);
-            }
+    public Collection<Student> findByAge(Long age) {
+        return studentRepository.findByAge(age);
+
         }
 
 
 
 
-        return sortedStudents;
-    } */
 
-}
+    }
+
+
