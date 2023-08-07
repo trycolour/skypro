@@ -1,45 +1,42 @@
 package ru.hogwarts.school.service;
 
 import org.springframework.stereotype.Service;
-import ru.hogwarts.school.model.Faculcy;
 import ru.hogwarts.school.model.Student;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
+import ru.hogwarts.school.reposy.StudentRepository;
 
 @Service
 
 public class StudentService {
-    private final HashMap<Long, Student> students = new HashMap<>();
+    private final StudentRepository studentRepository;
     private long idCount;
+
+    public StudentService(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+
+    }
+
     //CREATE
     public Student addStudent(Student student) {
-        student.setId(idCount++);
-        students.put(idCount, student);
-        return student;
+
+return studentRepository.save(student);
     }
     //READ
     public Student returnStudent(long id) {
-        return students.get(id);
+        return studentRepository.findById(id).get();
     }
     //UPDATE
     public Student editStudent(Student student) {
-        if (students.containsKey(student.getId())) {
-            students.put(student.getId(),student);
-            return student;
-        }
-        else
-            return null;
+        return studentRepository.save(student);
+
     }
     //DELETE
-    public Student deleteStudent(long id) {
-        return students.remove(id);
+    public void deleteStudent(long id) {
+        studentRepository.deleteById(id);
 
     }
     //фильтрация по возрасту
-    public Collection<Student> sortingStudent(Long age) {
+   /* public Collection<Student> sortingStudent(Long age) {
         Collection<Student> sortedStudents = new ArrayList<>();
         for (Student student : students.values()) {
             if (student.getAge() == age) {
@@ -51,6 +48,6 @@ public class StudentService {
 
 
         return sortedStudents;
-    }
+    } */
 
 }

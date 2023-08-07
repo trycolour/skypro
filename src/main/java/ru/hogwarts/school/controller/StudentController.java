@@ -5,8 +5,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.service.StudentService;
 
-import java.util.Collection;
-
 @RestController
 @RequestMapping("student")
 
@@ -26,7 +24,7 @@ if (student == null) {
 return ResponseEntity.ok(student);
 
 }
-@GetMapping("/sortbyage/{age}")
+/*@GetMapping("/sortbyage/{age}")
     ResponseEntity<Collection<Student>> sortByAge(@PathVariable long age) {
         Collection<Student> result = studentService.sortingStudent(age);
         if (result.size() == 0) {
@@ -34,6 +32,8 @@ return ResponseEntity.ok(student);
         }
         return ResponseEntity.ok(result);
 }
+
+ */
 
 
     @PostMapping
@@ -52,7 +52,7 @@ return ResponseEntity.ok(foundStudent);
 
 
 @DeleteMapping("{id}")
-public Student deleteStudent(@PathVariable Long id) {
-return studentService.deleteStudent(id);
+public void deleteStudent(@PathVariable Long id) {
+studentService.deleteStudent(id);
 }
 }
