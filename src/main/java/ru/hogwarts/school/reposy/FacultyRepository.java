@@ -1,12 +1,13 @@
 package ru.hogwarts.school.reposy;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.hogwarts.school.model.Faculcy;
-import ru.hogwarts.school.model.Student;
+import org.springframework.stereotype.Repository;
+import ru.hogwarts.school.model.Faculty;
 
 import java.util.Collection;
+@Repository
+public interface FacultyRepository extends JpaRepository<Faculty, Long> {
+    Collection<Faculty> findByColor(String color);
+    Collection<Faculty> findFacultyByColorIgnoreCaseOrNameIgnoreCase(String name, String color);
 
-public interface FacultyRepository extends JpaRepository<Faculcy, Long> {
-    Collection<Faculcy> findByColor(String color);
 }

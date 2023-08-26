@@ -1,15 +1,14 @@
 package ru.hogwarts.school.service;
-
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
-
 import ru.hogwarts.school.reposy.StudentRepository;
-
 import java.util.Collection;
+import java.util.List;
 
 @Service
-
 public class StudentService {
     private final StudentRepository studentRepository;
 
@@ -45,9 +44,23 @@ return studentRepository.save(student);
         }
 
 
-
-
-
+    public Collection<Student> getAllStudents() {
+        return studentRepository.findAll();
     }
+    public Collection<Student> findAllByAgeBetween(int ageFrom, int ageTo) {
+        return studentRepository.findAllByAgeBetween(ageFrom,ageTo);
+    }
+    public Collection<Student> findAllByFacultyName(String name) {
+        return studentRepository.findStudentsByFaculty_Name(name);
+    }
+
+
+
+
+
+
+}
+
+
 
 
