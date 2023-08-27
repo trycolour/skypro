@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "STUDENTS")
-
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,15 +14,10 @@ public class Student {
 @ManyToOne
 @JoinColumn(name = "faculty_id")
     private Faculty faculty;
-
-
-
-
-    public Student(Faculty faculty) {
+public Student(Faculty faculty) {
 
         this.faculty = faculty;
     }
-
 
     public long getId() {
         return id;
@@ -61,5 +55,9 @@ public class Student {
     }
     public Student() {
 
+    }
+
+    public Faculty getFaculty() {
+        return faculty;
     }
 }

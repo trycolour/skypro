@@ -2,6 +2,7 @@ package ru.hogwarts.school.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.service.StudentService;
 
@@ -50,15 +51,15 @@ public class StudentController {
         }
         return ResponseEntity.ok(foundStudent);
     }
-    @GetMapping
-    public ResponseEntity<Collection<Student>> finAllStudents() {
+   /* @GetMapping
+    public ResponseEntity<Collection<Student>> findAllStudents() {
         Collection<Student> students = studentService.getAllStudents();
         if (students == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(students);
 
-    }
+    }*/
 
 
     @DeleteMapping("{id}")
@@ -71,17 +72,16 @@ public class StudentController {
 
     }
 
-    @GetMapping
-    public Collection<Student> findStudentsByFacultyName(@RequestParam String name) {
-        return studentService.findAllByFacultyName(name);
+    @GetMapping("/findbyfaculty")
+    public Collection<Student> findStudentsByFacultyId(@RequestParam long id) {
+        return studentService.findAllByFacultyId(id);
 
     }
+    @GetMapping("/findstudentfaculy")
+    public Faculty findStudentFaculty(@RequestParam long id) {
+        return studentService.findFacultyStudent(id);
 
-
-
-
-
-
+    }
 
 
 }
