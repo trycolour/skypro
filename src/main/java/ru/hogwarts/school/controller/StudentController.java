@@ -1,19 +1,25 @@
 package ru.hogwarts.school.controller;
 
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
+import ru.hogwarts.school.service.AvatarService;
 import ru.hogwarts.school.service.StudentService;
 
+import java.io.IOException;
 import java.util.Collection;
 
 @RestController
 public class StudentController {
     private final StudentService studentService;
+    private final AvatarService avatarService;
 
-    public StudentController(StudentService studentService) {
+    public StudentController(StudentService studentService, AvatarService avatarService) {
         this.studentService = studentService;
+        this.avatarService = avatarService;
     }
 
     @GetMapping("{id}")
@@ -51,7 +57,7 @@ public class StudentController {
         }
         return ResponseEntity.ok(foundStudent);
     }
-   /* @GetMapping
+    @GetMapping("/getallstudents")
     public ResponseEntity<Collection<Student>> findAllStudents() {
         Collection<Student> students = studentService.getAllStudents();
         if (students == null) {
@@ -59,9 +65,7 @@ public class StudentController {
         }
         return ResponseEntity.ok(students);
 
-    }*/
-
-
+    }
     @DeleteMapping("{id}")
     public void deleteStudent(@PathVariable Long id) {
         studentService.deleteStudent(id);
@@ -82,6 +86,8 @@ public class StudentController {
         return studentService.findFacultyStudent(id);
 
     }
+
+
 
 
 }

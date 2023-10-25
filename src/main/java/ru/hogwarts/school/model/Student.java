@@ -11,6 +11,8 @@ public class Student {
     private long id;
     private String name;
     private int age;
+    @OneToOne
+    private Avatar avatar;
 @ManyToOne
 @JoinColumn(name = "faculty_id")
     private Faculty faculty;
